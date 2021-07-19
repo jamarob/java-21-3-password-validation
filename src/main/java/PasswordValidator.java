@@ -26,4 +26,8 @@ public class PasswordValidator {
         boolean hasLowerAndUpperCase = !isAllUpperCase && !isAllLowerCase;
         return hasLowerAndUpperCase;
     }
+
+    public static boolean validate(String password) {
+        return isLongEnough(password) && containsDigit(password) && containsUppercaseAndLowercase(password);
+    }
 }

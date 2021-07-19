@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -87,4 +90,26 @@ class PasswordValidatorTest {
         // Then
         assertTrue(actual);
     }
+
+    @ParameterizedTest
+    @MethodSource("provideValidPasswordArguments")
+    public void validPassword(String password, boolean expected){
+        // When
+        boolean actual = PasswordValidator.validate(password);
+
+        // Then
+        assertEquals(expected, actual);
+    }
+
+    private static Arguments[] provideValidPasswordArguments(){
+        return new Arguments[]{
+                Arguments.of("Passwort123", true),
+                Arguments.of("passwort123", false),
+                Arguments.of("PASSWORT123", false),
+                Arguments.of("pasW123", false),
+                Arguments.of("123456789", false),
+                Arguments.of("§/&%$&/§/()$(=)!(/$/&", false)
+        };
+    }
+
 }
