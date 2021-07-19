@@ -17,7 +17,6 @@ class PasswordValidatorTest {
 
         // Then
         assertFalse(actual);
-        fail();
     }
 
     @Test
