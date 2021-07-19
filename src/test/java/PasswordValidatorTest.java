@@ -51,4 +51,40 @@ class PasswordValidatorTest {
         // Then
         assertFalse(actual);
     }
+
+    @Test
+    public void passwordWithAllLowercase(){
+        // Given
+        String password = "passwort";
+
+        // When
+        boolean actual = PasswordValidator.containsUppercaseAndLowercase(password);
+
+        // Then
+        assertFalse(actual);
+    }
+
+    @Test
+    public void passwordWithAllUppercase(){
+        // Given
+        String password = "PASSWORT";
+
+        // When
+        boolean actual = PasswordValidator.containsUppercaseAndLowercase(password);
+
+        // Then
+        assertFalse(actual);
+    }
+
+    @Test
+    public void passwordWithMixedCase(){
+        // Given
+        String password = "PassWort";
+
+        // When
+        boolean actual = PasswordValidator.containsUppercaseAndLowercase(password);
+
+        // Then
+        assertTrue(actual);
+    }
 }

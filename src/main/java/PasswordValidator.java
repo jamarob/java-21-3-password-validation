@@ -1,3 +1,5 @@
+import java.util.Locale;
+
 public class PasswordValidator {
 
     private static final int MIN_LENGTH = 8;
@@ -14,5 +16,14 @@ public class PasswordValidator {
             }
         }
         return false;
+    }
+
+    public static boolean containsUppercaseAndLowercase(String password) {
+        String lowercase = password.toLowerCase();
+        boolean isAllLowerCase = lowercase.equals(password);
+        String uppercase = password.toUpperCase();
+        boolean isAllUpperCase = uppercase.equals(password);
+        boolean hasLowerAndUpperCase = !isAllUpperCase && !isAllLowerCase;
+        return hasLowerAndUpperCase;
     }
 }
